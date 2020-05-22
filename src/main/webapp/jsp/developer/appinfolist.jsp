@@ -7,7 +7,7 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					APP 信息管理维护 <i class="fa fa-user"></i><small>${devUserSession.devName}
+					APP 信息管理维护 <i class="fa fa-user"></i><small>${sessionScope.devuser.devname}
 						- 您可以通过搜索或者其他的筛选项对APP的信息进行修改、删除等管理操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
@@ -165,16 +165,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
+								<c:forEach var="appInfo" items="${appInfoList}" varStatus="status">
 									<tr role="row" class="odd">
-										<td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
-										<td>${appInfo.APKName }</td>
-										<td>${appInfo.softwareSize }</td>
-										<td>${appInfo.flatformName }</td>
-										<td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
-										<td><span id="appInfoStatus${appInfo.id}">${appInfo.statusName }</span></td>
+										<td tabindex="0" class="sorting_1">${appInfo.softwarename}</td>
+										<td>${appInfo.apkname }</td>
+										<td>${appInfo.softwaresize }</td>
+										<td>${appInfo.flatformname }</td>
+										<td>${appInfo.categorylevel1name } -> ${appInfo.categorylevel2name } -> ${appInfo.categorylevel3name }</td>
+										<td><span id="appInfoStatus${appInfo.id}">${appInfo.statusname }</span></td>
 										<td>${appInfo.downloads }</td>
-										<td>${appInfo.versionNo }</td>
+										<td>${appInfo.versionno }</td>
 										<td>
 										
 										
@@ -188,25 +188,25 @@
                         <li>
                         	<c:choose>
 											<c:when test="${appInfo.status == 2 || appInfo.status == 5}">
-												<a class="saleSwichOpen" saleSwitch="open" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="恭喜您，您的审核已经通过，您可以点击上架发布您的APP">上架</a>
+												<a class="saleSwichOpen" saleSwitch="open" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwarename } data-toggle="tooltip" data-placement="top" title="" data-original-title="恭喜您，您的审核已经通过，您可以点击上架发布您的APP">上架</a>
 											</c:when>
 											<c:when test="${appInfo.status == 4}">
-												<a class="saleSwichClose" saleSwitch="close" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="您可以点击下架来停止发布您的APP，市场将不提供APP的下载">下架</a>
+												<a class="saleSwichClose" saleSwitch="close" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwarename } data-toggle="tooltip" data-placement="top" title="" data-original-title="您可以点击下架来停止发布您的APP，市场将不提供APP的下载">下架</a>
 											</c:when>
 										</c:choose>
                         </li>
                         <li><a class="addVersion" appinfoid="${appInfo.id }" data-toggle="tooltip" data-placement="top" title="" data-original-title="新增APP版本信息">新增版本</a>
                         </li>
                         <li><a class="modifyVersion" 
-											appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }" 
-											statusname="${appInfo.statusName }"											
+											appinfoid="${appInfo.id }" versionid="${appInfo.versionid }" status="${appInfo.status }"
+							                statusname="${appInfo.statusname}"
 											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP最新版本信息">修改版本</a>
                         </li>
                         <li><a  class="modifyAppInfo" 
-											appinfoid="${appInfo.id }" status="${appInfo.status }" statusname="${appInfo.statusName }"
+											appinfoid="${appInfo.id }" status="${appInfo.status } " statusname="${appInfo.statusname}"
 											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>
                         <li><a  class="viewApp" appinfoid=${appInfo.id }  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>
-						<li><a  class="deleteApp" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>
+						<li><a  class="deleteApp" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwarename } data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>
                       </ul>
                     </div>
 										</td>
