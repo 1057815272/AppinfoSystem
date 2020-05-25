@@ -20,6 +20,16 @@
     <bean name="/hello" class="com.jbit.web.helloController"></bean>-->
     <mvc:resources mapping="/statics/**" location="/statics/"></mvc:resources>
 
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/dev/login"/>
+            <mvc:exclude-mapping path="/statics/**"/>
+            <bean class="com.jbit.utils.SysInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/jsp/"></property>
         <property name="suffix" value=".jsp"></property>

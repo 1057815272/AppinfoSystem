@@ -1,5 +1,8 @@
 package com.jbit.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.jbit.mapper.AppInfoMapper;
 import com.jbit.pojo.AppInfo;
 import com.jbit.pojo.AppVersion;
@@ -24,12 +27,15 @@ public class AppInfoService {
     /*
     App列表查询 每一个dev登陆后只查看属于自己的appinfo
     * */
-    public List<AppInfo> queryAppInfo(Long devId){
+    public PageInfo queryAppInfo(Integer pagenum,Long devId){
+        //实现分页
+        PageHelper.startPage(pagenum,5);
         AppInfo appInfo = new AppInfo();
         appInfo.setDevid(devId);
         List<AppInfo> appInfos = appInfoMapper.select(appInfo);
         bindData(appInfos);
-        return appInfos;
+        //处理分页
+        return new PageInfo<>(appInfos);
     }
 
     public void bindData(List<AppInfo> appInfos){
