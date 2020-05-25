@@ -13,7 +13,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
+				<form method="post" action="/dev/app/list">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
@@ -31,10 +31,10 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<select name="queryStatus" class="form-control">
 									<c:if test="${statusList != null }">
-									   <option value="">--请选择--</option>
+									   <option value="0">--请选择--</option>
 									   <c:forEach var="dataDictionary" items="${statusList}">
-									   		<option <c:if test="${dataDictionary.valueId == queryStatus }">selected="selected"</c:if>
-									   		value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>
+									   		<option <c:if test="${dataDictionary.valueid == queryStatus }">selected="selected"</c:if>
+									   		value="${dataDictionary.valueid}">${dataDictionary.valuename}</option>
 									   </c:forEach>
 									</c:if>
         						</select>
@@ -47,10 +47,10 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<select name="queryFlatformId" class="form-control">
 									<c:if test="${flatFormList != null }">
-									   <option value="">--请选择--</option>
+									   <option value="0">--请选择--</option>
 									   <c:forEach var="dataDictionary" items="${flatFormList}">
-									   		<option <c:if test="${dataDictionary.valueId == queryFlatformId }">selected="selected"</c:if>
-									   		value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>
+									   		<option <c:if test="${dataDictionary.valueid == queryFlatformId }">selected="selected"</c:if>
+									   		value="${dataDictionary.valueid}">${dataDictionary.valuename}</option>
 									   </c:forEach>
 									</c:if>
         						</select>
@@ -63,10 +63,10 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<select id="queryCategoryLevel1" name="queryCategoryLevel1" class="form-control">
 									<c:if test="${categoryLevel1List != null }">
-									   <option value="">--请选择--</option>
+									   <option value="0">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel1List}">
 									   		<option <c:if test="${appCategory.id == queryCategoryLevel1 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   		value="${appCategory.id}">${appCategory.categoryname}</option>
 									   </c:forEach>
 									</c:if>
         						</select>
@@ -80,10 +80,10 @@
 							<input type="hidden" name="categorylevel2list" id="categorylevel2list"/>
         						<select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
         							<c:if test="${categoryLevel2List != null }">
-									   <option value="">--请选择--</option>
+									   <option value="0">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel2List}">
 									   		<option <c:if test="${appCategory.id == queryCategoryLevel2 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   		value="${appCategory.id}">${appCategory.categoryname}</option>
 									   </c:forEach>
 									</c:if>
         						</select>
@@ -96,10 +96,10 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
         						<select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
         							<c:if test="${categoryLevel3List != null }">
-									   <option value="">--请选择--</option>
+									   <option value="0">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel3List}">
 									   		<option <c:if test="${appCategory.id == queryCategoryLevel3 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   		value="${appCategory.id}">${appCategory.categoryname}</option>
 									   </c:forEach>
 									</c:if>
         						</select>
