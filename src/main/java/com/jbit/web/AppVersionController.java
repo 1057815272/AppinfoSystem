@@ -69,6 +69,7 @@ public class AppVersionController {
         return "developer/appversionmodify";
     }
 
+    //修改
     @PostMapping("/appversionmodifysave")
     public String appversionmodifysave(HttpSession session ,AppVersion appVersion,MultipartFile attach){
         if(!attach.isEmpty()){
