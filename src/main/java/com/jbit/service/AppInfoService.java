@@ -120,8 +120,8 @@ public class AppInfoService {
     }
 
     //修改信息
-    public int update(AppInfo appInfo) {
-        return appInfoMapper.updateByPrimaryKeySelective(appInfo);
+    public void update(AppInfo appInfo) {
+         appInfoMapper.updateByPrimaryKeySelective(appInfo);
     }
 
 

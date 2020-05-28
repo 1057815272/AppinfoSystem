@@ -60,4 +60,32 @@ public class AppVersionController {
         appInfoService.update(appInfo);
         return "redirect:/dev/app/list";
     }
+
+    //反填版本信息等待修改
+    @GetMapping("/appversionmodify")
+    public String appversionmodify(Model model,Long vid,Long aid){
+        model.addAttribute("appVersionList",appVersionService.queryByAppid(aid));
+        model.addAttribute("appVersion",appVersionService.queryById(vid));
+        return "developer/appversionmodify";
+    }
+
+    @PostMapping("/appversionmodifysave")
+    public String appversionmodifysave(HttpSession session ,AppVersion appVersion,MultipartFile attach){
+        if(!attach.isEmpty()){
+            String server_path = session.getServletContext().getRealPath("/statics/uploadfiles/");
+            //验证大小和图片规格 [略]
+            try {
+                attach.transferTo(new File(server_path,attach.getOriginalFilename()));
+                appVersion.setDownloadlink("/statics/uploadfiles/"+attach.getOriginalFilename());   //相对路径
+                appVersion.setApklocpath(server_path+attach.getOriginalFilename());
+                appVersion.setApkfilename(attach.getOriginalFilename());
+            } catch (IOException e) {
+            }
+        }
+        DevUser devuser = (DevUser) session.getAttribute("devuser");
+        appVersion.setModifyby(devuser.getId());
+        appVersion.setModifydate(new Date());
+        appVersionService.update(appVersion);
+        return  "redirect:/dev/app/list";
+    }
 }

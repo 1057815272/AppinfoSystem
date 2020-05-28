@@ -50,5 +50,10 @@ public class AppVersionService {
     public void addversion(AppVersion appVersion) {
         appVersionMapper.insertSelective(appVersion);
     }
+
+    //修改
+    public int update(AppVersion appVersion) {
+        return appVersionMapper.updateByPrimaryKeySelective(appVersion);
+    }
 }
 

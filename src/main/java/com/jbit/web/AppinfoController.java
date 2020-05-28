@@ -125,6 +125,19 @@ public class AppinfoController {
             } catch (Exception e) {
                 return new JsonResult(false);
             }
+        }else if(flag.equals("apk")){
+            AppVersion appVersion = appVersionService.queryById(id);
+            try {
+                File file = new File(appVersion.getApklocpath());
+                file.delete();
+                appVersion.setDownloadlink("");
+                appVersion.setApklocpath("");
+                appVersion.setApkfilename("");
+                appVersionService.update(appVersion);
+                return new JsonResult(true);
+            } catch (Exception e) {
+                return new JsonResult(false);
+            }
         }
         return  new JsonResult(false);
 
