@@ -103,6 +103,7 @@ public class AppInfoService {
     @Transactional
     public void save(AppInfo appInfo) {
         appInfoMapper.insertSelective(appInfo);
+
     }
 
     //根据id查询所有信息
@@ -128,4 +129,6 @@ public class AppInfoService {
     public int deleteByid(Long id) {
         return appInfoMapper.deleteByPrimaryKey(id);
     }
+
+
 }

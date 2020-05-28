@@ -5,6 +5,7 @@ import com.jbit.mapper.AppVersionMapper;
 import com.jbit.pojo.AppInfo;
 import com.jbit.pojo.AppVersion;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,7 +35,6 @@ public class AppVersionService {
         return select;
     }
 
-
     //绑定
     public void bindData(List<AppVersion> appVersions){
         appVersions.forEach((app)->{
@@ -43,6 +43,12 @@ public class AppVersionService {
             //发布状态
             app.setPublishstatusname(dataDictionaryService.queryData("APP_STATUS",app.getPublishstatus()).getValuename());
         });
+    }
+
+    //添加版权
+    @Transactional
+    public void addversion(AppVersion appVersion) {
+        appVersionMapper.insertSelective(appVersion);
     }
 }
 
