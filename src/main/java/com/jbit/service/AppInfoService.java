@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,7 +28,6 @@ public class AppInfoService {
 
     @Resource
     private AppVersionService appVersionService;
-
 
     public AppInfo queryApkexist(String apkname){
         AppInfo appInfo = new AppInfo();
@@ -103,5 +103,29 @@ public class AppInfoService {
     @Transactional
     public void save(AppInfo appInfo) {
         appInfoMapper.insertSelective(appInfo);
+    }
+
+    //根据id查询所有信息
+    public AppInfo queryById(Long id){
+       AppInfo app = appInfoMapper.selectByPrimaryKey(id);
+        app.setFlatformname(dataDictionaryService.queryData("APP_FLATFORM",app.getFlatformid()).getValuename());
+
+        app.setCategorylevel1name(appCategoryService.queryById(app.getCategorylevel1()).getCategoryname());
+        app.setCategorylevel2name(appCategoryService.queryById(app.getCategorylevel2()).getCategoryname());
+        app.setCategorylevel3name(appCategoryService.queryById(app.getCategorylevel3()).getCategoryname());
+
+        app.setStatusname(dataDictionaryService.queryData("APP_STATUS",app.getStatus()).getValuename());
+       return app;
+    }
+
+    //修改信息
+    public int update(AppInfo appInfo) {
+        return appInfoMapper.updateByPrimaryKeySelective(appInfo);
+    }
+
+
+    //根据id删除app应用信息
+    public int deleteByid(Long id) {
+        return appInfoMapper.deleteByPrimaryKey(id);
     }
 }

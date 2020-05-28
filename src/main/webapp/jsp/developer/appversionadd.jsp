@@ -6,7 +6,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>新增APP版本信息 <i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
+        <h2>新增APP版本信息 <i class="fa fa-user"></i><small>${sessionScope.devuser.devname}</small></h2>
             <div class="clearfix"></div>
       </div>
       <div class="x_title">
@@ -56,16 +56,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="appVersion" items="${appVersionList }" varStatus="status">
+							<c:forEach var="appVersion" items="${appVersionList}" varStatus="status">
 								<tr role="row" class="odd">
-									<td tabindex="0" class="sorting_1">${appVersion.appName}</td>
-									<td>${appVersion.versionNo }</td>
-									<td>${appVersion.versionSize }</td>
-									<td>${appVersion.publishStatusName }</td>
+									<td tabindex="0" class="sorting_1">${appVersion.appname}</td>
+									<td>${appVersion.versionno }</td>
+									<td>${appVersion.versionsize }</td>
+									<td>${appVersion.publishstatusname }</td>
 									<td>
-									<a href="${appVersion.downloadLink }">${appVersion.apkFileName }</a>
+									<a href="${appVersion.downloadlink }">${appVersion.apkfilename }</a>
 									</td>
-									<td><fmt:formatDate value="${appVersion.modifyDate }" pattern="yyyy-MM-dd"/></td>
+									<td><fmt:formatDate value="${appVersion.modifydate }" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>
