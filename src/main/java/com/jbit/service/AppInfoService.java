@@ -60,7 +60,9 @@ public class AppInfoService {
         if (queryCategoryLevel3!=null&&queryCategoryLevel3!=0){
             criteria.andEqualTo("categorylevel3",queryCategoryLevel3);
         }
+        if (devId !=null){
         criteria.andEqualTo("devid",devId);
+        }
         List<AppInfo> appInfos = appInfoMapper.selectByExample(example);
         bindData(appInfos);
         //处理分页
@@ -120,8 +122,8 @@ public class AppInfoService {
     }
 
     //修改信息
-    public void update(AppInfo appInfo) {
-         appInfoMapper.updateByPrimaryKeySelective(appInfo);
+    public int update(AppInfo appInfo) {
+        return appInfoMapper.updateByPrimaryKeySelective(appInfo);
     }
 
 

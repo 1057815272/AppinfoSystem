@@ -184,4 +184,22 @@ public class AppinfoController {
         model.addAttribute("appVersionList",appVersions);
         return "developer/appinfoview";
     }
+
+    @PutMapping("sale/{appId}/{type}")
+    @ResponseBody
+    public JsonResult sale(@PathVariable Long appId,@PathVariable String type){
+        AppInfo appInfo = new AppInfo();
+        appInfo.setId(appId);
+        if (type.equals("open")){
+            //上架
+            appInfo.setStatus(4L);
+        }else if (type.equals("close")){
+            appInfo.setStatus(5L);
+        }
+        int update = appInfoService.update(appInfo);
+        if (update!=0){
+            return  new JsonResult(true);
+        }
+        return  new JsonResult(false);
+    }
 }
